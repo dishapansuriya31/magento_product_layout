@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Commercepundit
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Commercepundit.com license that is
+ * available through the world-wide-web at this URL:
+ * http://commercepundit.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Commercepundit
+ * @package    Commercepundit_Facuetsink
+ * @copyright  Copyright (c) Commercepundit (http://www.commercepundit.com/)
+ * @license    http://www.commercepundit.com/LICENSE-1.0.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="catalog_product_view"/>
+   
+    <body>
+        <attribute name="class" value="page-layout-1column"/>
+        <attribute name="class" value="custom-cabinets-layout"/>
+        <attribute name="class" value="facuets-sinks-layout"/>
+      <referenceBlock name="product.info.options">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Commercepundit_WebQuote::product/view/options.phtml</argument>
+                </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.options.wrapper">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Commercepundit_WebQuote::product/view/options/wrapper.phtml</argument>
+                </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.addtocart">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Commercepundit_WebQuote::product/view/addtocart.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.addtocart.additional">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Commercepundit_WebQuote::product/view/addtocart.phtml</argument>
+            </action>
+        </referenceBlock>
+         <referenceBlock name="product.info.details">
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.specification" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="product.info.extrahint">
+            <arguments>
+                <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                <argument name="at_code" xsi:type="string">short_description</argument>
+                <argument name="css_class" xsi:type="string">overview</argument>
+                <argument name="at_label" xsi:type="string">none</argument>
+                <argument name="title" translate="true" xsi:type="string">Specifications</argument>
+                <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+                <argument name="sort_order" xsi:type="string">42</argument>
+            </arguments>
+        </block>
+       
+        <referenceBlock name="product.attributes">
+            <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Additional Information</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="reviews.tab" remove="true"/>
+    </referenceBlock>
+    <!-- changes done to show color chip after wishlist on sample pdp page -->
+    <referenceBlock name="product.info.extrahint">
+        <block
+            class="Magento\Catalog\Block\Product\View"
+            name="product.free_chip"
+            template="Commercepundit_WebQuote::product/view/free_color_chip.phtml"
+            before="product.info.socialshare"/>
+    </referenceBlock>
+    <!-- changes done to show color chip after wishlist on sample pdp page end-->
+    <!-- to show full breadcrumb on pdp page -->
+    <referenceBlock class="Commercepundit\WebQuote\Block\Breadcrumbs" name="breadcrumbs" template="Commercepundit_WebQuote::html/breadcrumbs.phtml"/>
+    <referenceBlock name="product.attributes" remove="true" />
+    <referenceBlock name="product.info.description" remove="true" />
+    <referenceBlock name="product.price.final" remove="true"/>
+    </body>
+   
+</page>
